@@ -18,12 +18,15 @@ on:
   workflow_dispatch:      # Enables manual triggering
 ```
 
+---
+
 ### How to customize
 To change the ping interval, update the cron expression. For example:
 
 - Every 30 minutes: '*/30 * * * *'
 - Every 10 minutes: '*/10 * * * *'
 
+---
 
 ### Notes
 - The cron syntax uses UTC timezone by default.
