@@ -9,7 +9,7 @@ This repository includes a GitHub Actions workflow to keep your Streamlit app aw
 - **Schedule:** Runs every hour on the hour.
 - **Manual trigger:** You can manually trigger the workflow via the "Actions" tab in GitHub.
 
-### Workflow snippet
+## Workflow snippet
 
 ```yaml
 on:
@@ -18,17 +18,15 @@ on:
   workflow_dispatch:      # Enables manual triggering
 ```
 
----
 
-### How to customize
+## How to customize
 To change the ping interval, update the cron expression. For example:
 
 - Every 30 minutes: '*/30 * * * *'
 - Every 10 minutes: '*/10 * * * *'
 
----
 
-### Notes
+## Notes
 - The cron syntax uses UTC timezone by default.
 - Ensure the URL in the workflow is your deployed Streamlit app endpoint.
 
