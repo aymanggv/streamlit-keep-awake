@@ -12,4 +12,4 @@ jobs:
       - name: Ping App
         run: |
           echo "Pinging Streamlit app..."
-          curl -s -o /dev/null -w "%{http_code}" https://your-streamlit-app.streamlit.app/
+          curl -s -o /dev/null -w "%{http_code}" https://aymang.streamlit.app/ || echo "App not reachable"
