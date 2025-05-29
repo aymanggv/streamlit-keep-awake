@@ -1,15 +1,24 @@
-name: Keep Streamlit App Awake
+name: Wake Up Streamlit App
 
 on:
   schedule:
-    - cron: '0 * * * *' # Every 60 minutes
-  workflow_dispatch: # lets you manually trigger it
+    - cron: '*/30 * * * *'  # every 30 minutes
+  workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping App
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
         run: |
-          echo "Pinging Streamlit app..."
-          curl -s -o /dev/null -w "%{http_code}" https://aymang.streamlit.app/ || echo "App not reachable"
+          python -m pip install --upgrade pip
+          pip install selenium webdriver-manager
+
+      - name: Ping Streamlit app with Selenium
+        run: |
+          python ping_app.py
