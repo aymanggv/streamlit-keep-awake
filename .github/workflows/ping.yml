@@ -2,13 +2,20 @@ name: Wake Up Streamlit App
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # every 30 minutes
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Chrome
+        run: |
+          sudo apt update
+          sudo apt install -y wget unzip xvfb libxi6 libgconf-2-4
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt -f install -y
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
