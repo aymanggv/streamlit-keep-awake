@@ -3,10 +3,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from streamlit_app import STREAMLIT_APPS
 import datetime
 
 # Set up Selenium webdriver
+STREAMLIT_APPS = [
+    "https://aymang.streamlit.app/"
+]
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 driver = webdriver.Chrome(options=options)
