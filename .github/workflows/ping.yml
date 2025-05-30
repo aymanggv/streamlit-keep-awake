@@ -1,34 +1,15 @@
-name: Wake Up Streamlit Apps
+name: Keep Streamlit App Awake
 
 on:
-  push:
-    branches:
-      - main
   schedule:
-    - cron: "0 * * * *"
+    - cron: '0 * * * *' # Every 60 minutes
+  workflow_dispatch: # lets you manually trigger it
 
 jobs:
-  wake-up:
+  ping:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: Install dependencies
+      - name: Ping App
         run: |
-          pip install selenium
-
-      - name: Run Python script to wake up Streamlit apps
-        run: python streamlit_keep_awake.py
-
-      - name: Upload log file as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: wakeup-log
-          path: wakeup_log.txt
+          echo "Pinging Streamlit app..."
+          curl -s -o /dev/null -w "%{http_code}" https://aymang.streamlit.app/ || echo "App not reachable"
